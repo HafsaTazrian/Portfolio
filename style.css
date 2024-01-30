@@ -43,6 +43,14 @@ section{
     align-items: center;
     z-index: 100;
 }
+.header.sticky{
+    border-bottom: .1rem solid rgba(0,0,0,.2);
+    /**/
+    position: fixed;
+    top: 0;
+    width: 100%;
+    
+}
 
 .logo{
     font-size: 2.5rem;
@@ -55,12 +63,32 @@ section{
 }
 
 .navbar a{
+    display: inline-block;
     font-size: 1.7rem;
     color: var(--text-color);
     margin-left: 4rem;
+    opacity: 0;
     transition: .5s easy;
+    animation: slideLeft .5s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+    position: relative;
+    text-decoration: none;
+    padding: 0 .8rem;
+    cursor: pointer;
 }
-
+.navbar a::after{
+    content: "";
+    position: absolute;
+    background-color: var(--main-color);
+    height: .2rem;
+    width: 0%;
+    left: 0;
+    bottom: -.8rem;
+    transition: 0.3s;
+}
+.navbar a:hover::after{
+    width: 100%;
+}
 .navbar a:hover{
     color: var(--main-color)
 }
@@ -87,6 +115,8 @@ section{
     border-style: dashed;
     border-color: var(--main-color);
     transition: .5s ease;
+    opacity: 0;
+    animation: zoomIn .5s ease forwards;
 }
 
 .home-img img:hover{
@@ -103,6 +133,9 @@ section{
 }
 .home-content h3:nth-of-type(2){
     margin-bottom: 2rem;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+    animation-delay: .7s;
 }
 span{
     color: var(--main-color);
@@ -113,6 +146,7 @@ span{
     font-weight: 700;
     line-height: 1.3;
     color: var(--text-color);
+    
 }
 .home-content p{
     font-size: 1.6rem;
@@ -132,6 +166,9 @@ span{
     color: var(--main-color);
     margin: 3rem 1.5rem 3rem 0;
     transition: .5s ease;
+    opacity: 0;
+    animation: slideLeft .5s ease forwards;
+    animation-delay: calc(.2s * var(--i));
 }
 
 .social-media a:hover{
@@ -207,7 +244,7 @@ span{
     padding: 3rem 2rem 4rem;
     border-radius: 2rem;
     text-align: center;
-    border: .2rem solid --bg-color;
+    border: .2rem solid var(--bg-color);
     transition: .5s ease;
 }
 .services-container .services-box:hover{
@@ -230,7 +267,9 @@ span{
 .services-box p{
     font-size: 1.6rem;
     margin: 1rem 0 3rem;
-    color: var(--text-color)
+    color: var(--text-color);
+    transition: .5s ease;
+
 }
 .portfolio{
     background: var(--bg-color);
@@ -352,6 +391,53 @@ span{
     margin-top: 2rem;
     cursor: pointer;
 }
+.contact-info h1{
+    font-size: 3rem;
+    color: var(--text-color);
+    padding: 0 40% 0%;
+    margin-top: 15rem;
+    margin-bottom: 4rem;
+}
+.contactInfo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+.contactInfo-container .box{
+    flex: 1 1 30rem;
+    padding: 3rem 2rem 4rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: .2rem solid var(--second-bg-color);
+    transition: .5s ease;
+}
+.contactInfo-container .box:hover{
+    border-color: var(--main-color);
+    transform: scale(1.02);
+}
+.contactInfo-container .box h2{
+    font-size: 2.5rem;
+    color: var(--main-color);
+}
+.contactInfo-container .box h3{
+    font-size: 2rem;
+    color: var(--text-color);
+}
+.contactInfo-container .box a{
+    color: var(--text-color);
+    font-size: 1.6rem;
+    margin-bottom: 7rem;
+}
+.contactInfo-container .box a:hover{
+    color: var(--main-color);
+    text-decoration: underline;
+
+}
+
+
 .footer{
     display: flex;
     justify-content: space-between;
@@ -364,6 +450,7 @@ span{
     font-size: 1.6rem;
     color: var(--text-color);
 }
+
 .footer-iconTop a{
     display: inline-flex;
     justify-content: center;
@@ -371,6 +458,7 @@ span{
     padding: .8rem;
     background: var(--main-color);
     border-radius: .8rem;
+    color: var(--second-bg-color);
     transition: .5s ease;
 }
 .footer-iconTop a:hover{
@@ -395,5 +483,130 @@ span{
         opacity: 1;
     }
 }
+@keyframes slideTop{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft{
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes slideBottom{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes zoomIn{
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* BreakPoints */
+@media (max-width: 1200px){
+    html{
+        font-size: 55%;
+    }
+}
+@media (max-width: 991px){
+    .header{
+        padding: 2rem 3%;
+    }
+    section{
+        padding: 10rem 2% 2rem;
+    }
+    .services{
+        padding-bottom: 7rem;
+    }
+    .portfolio{
+        padding-bottom: 7rem;
+    }
+    .footer{
+        padding: 2rem 3%;
+    }
+}
+@media (max-width: 768px){
+    #menu-icon{
+        display: block;
+    }
+    .navbar{
+        position: relative;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0,0,0,.2);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+        display: none;
+    }
+    .navbar.active{
+        display: block;
+        
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: auto; 
+        
+    }
+    .navbar a{
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+    .home{
+        flex-direction: column;
+    }
+    .home-content h3{
+        font-size: 2.6rem;
+    }
+    .home-content h1{
+        font-size: 5rem;
+    }
+    .home-img img{
+        width: 70vw;
+        margin-top: 4rem;
+    }
+    .about{
+        flex-direction: column-reverse;
+    }
+    .about img{
+        width: 70vw;
+        margin-top: 4rem;
+    }
+    .services h2{
+        margin-bottom: 3rem;
+    }
+    .portfolio h2{
+        margin-bottom: 3rem;
+    }
+    .portfolio-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
 
 
